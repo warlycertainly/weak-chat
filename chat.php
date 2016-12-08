@@ -1,8 +1,6 @@
 <html>
 	<head>
 <?php
-      ini_set("display_error", 1);
-      ini_set("error_reporting", E_ERROR);
       header("X-XSS-Protection: 0");     
       $dsn = 'mysql:dbname=weakchat;host=127.0.0.1';
       $user = 'warly';
