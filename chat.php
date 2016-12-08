@@ -1,10 +1,12 @@
 <html>
 	<head>
-    <?php
+<?php
+      ini_set("display_error", 1);
+      ini_set("error_reporting", E_ERROR);
       header("X-XSS-Protection: 0");     
-      $dsn = 'mysql:dbname=weakchat;host=localhost';
-      $user = 'weakchat';
-      $password = 'weakpa33w0rd';
+      $dsn = 'mysql:dbname=weakchat;host=127.0.0.1';
+      $user = 'warly';
+      $password = '';
 
       try{
         $dbh = new PDO($dsn, $user, $password);
@@ -49,7 +51,7 @@
 
         //Hiddenの設定
         document.getElementById("name").value = decodeURIComponent(location.hash).substr(1);
-        document.getElementById("hname").innerHTML = decodeURIComponent(location.hash).substr(1);
+        document.getElementById("hname").innerText = decodeURIComponent(location.hash).substr(1);
         document.getElementById("post").action = "chat.php"+location.hash;
       }
 		</script>
@@ -70,9 +72,9 @@
             $content=$row{"content"};
             ?>
               <tr>
-                <td><?php echo $name ?></td>
-                <td><?php echo $hash ?></td>
-                <td><?php echo $content ?></td>
+                <td><?php echo htmlspecialchars($name) ?></td>
+                <td><?php echo htmlspecialchars($hash) ?></td>
+                <td><?php echo htmlspecialchars($content) ?></td>
               </tr>
             <?php
           }
